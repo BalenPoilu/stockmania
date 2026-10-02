@@ -1,42 +1,53 @@
-package fr.balen.paul.controles;
+package fr.balen.paul.models;
 
-import fr.balen.paul.models.StatusDBModel;
+import fr.balen.paul.vues.IVue;
 
-import java.sql.Connection;
-import java.sql.DriverManager;
-import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
-public class StatusDBControle implements IControle {
+public class StatusDBModel implements IModel {
 
-    private StatusDBModel model;
+    private final List<IVue> vues = new ArrayList<>();
+    private boolean isConnected;
+    private String statusMessage = "Déconnecté";
 
-    public StatusDBControle(StatusDBModel model) {
-        this.model = model;
+    public StatusDBModel() {
     }
 
-    public StatusDBModel getModel() {
-        return model;
+    public boolean isConnected() {
+        return isConnected;
     }
 
-    public void setModel(StatusDBModel model) {
-        this.model = model;
+    public void setConnected(boolean isConnected) {
+        this.isConnected = isConnected;
+        notifyVues();
+    }
+
+    public String getStatusMessage() {
+        return statusMessage;
+    }
+
+    public void setStatusMessage(String statusMessage) {
+        this.statusMessage = statusMessage;
+        notifyVues();
     }
 
     @Override
-    public void verifierConnexion() {
-        if (model == null) {
-            return;
+    public void addVue(IVue vue) {
+        if (vue != null && !vues.contains(vue)) {
+            vues.add(vue);
         }
+    }
 
-        String dbUrl = "jdbc:sqlite:stockmania.db";
-        try (Connection conn = DriverManager.getConnection(dbUrl)) {
-            if (conn != null) {
-                model.setConnected(true);
-                model.setStatusMessage("connécté (" + dbUrl + ")");
-            }
-        } catch (SQLException e) {
-            model.setConnected(false);
-            model.setStatusMessage("Erreur : " + e.getMessage());
+    @Override
+    public void removeVue(IVue vue) {
+        vues.remove(vue);
+    }
+
+    @Override
+    public void notifyVues() {
+        for (IVue vue : vues) {
+            vue.update(this);
         }
     }
 }
