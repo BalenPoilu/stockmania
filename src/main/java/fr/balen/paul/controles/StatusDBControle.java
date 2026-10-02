@@ -1,29 +1,42 @@
 package fr.balen.paul.controles;
 
-import fr.balen.paul.models.IModels;
-import fr.balen.paul.vues.IVues;
+import fr.balen.paul.models.StatusDBModel;
 
-import java.util.ArrayList;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
 
-public class StatusDBControle implements IControles{
+public class StatusDBControle implements IControle {
 
-    ArrayList<IVues> vues;
-    StatusDBControle model;
+    private StatusDBModel model;
 
-    @Override
-    public void addIvues(IVues vue) {
-        vues.add(vue);
+    public StatusDBControle(StatusDBModel model) {
+        this.model = model;
+    }
+
+    public StatusDBModel getModel() {
+        return model;
+    }
+
+    public void setModel(StatusDBModel model) {
+        this.model = model;
     }
 
     @Override
-    public void removeIvues(IVues vue) {
-        vues.remove(vue);
-    }
+    public void verifierConnexion() {
+        if (model == null) {
+            return;
+        }
 
-    @Override
-    public void notifyVues(IModels model) {
-        for (IVues vue : vues){
-            vue.update(model);
+        String dbUrl = "jdbc:sqlite:stockmania.db";
+        try (Connection conn = DriverManager.getConnection(dbUrl)) {
+            if (conn != null) {
+                model.setConnected(true);
+                model.setStatusMessage("connécté (" + dbUrl + ")");
+            }
+        } catch (SQLException e) {
+            model.setConnected(false);
+            model.setStatusMessage("Erreur : " + e.getMessage());
         }
     }
 }
