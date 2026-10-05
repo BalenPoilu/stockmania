@@ -1,0 +1,17 @@
+F:\Pro\projetPerso\stockmania\src\main\java\fr\balen\paul\controles\IControle.java
+F:\Pro\projetPerso\stockmania\src\main\java\fr\balen\paul\controles\StatusDBControle.java
+F:\Pro\projetPerso\stockmania\src\main\java\fr\balen\paul\dao\ItemDAO.java
+F:\Pro\projetPerso\stockmania\src\main\java\fr\balen\paul\database\DatabaseHelper.java
+F:\Pro\projetPerso\stockmania\src\main\java\fr\balen\paul\database\RowMapper.java
+F:\Pro\projetPerso\stockmania\src\main\java\fr\balen\paul\Main.java
+F:\Pro\projetPerso\stockmania\src\main\java\fr\balen\paul\models\IModel.java
+F:\Pro\projetPerso\stockmania\src\main\java\fr\balen\paul\models\Item.java
+F:\Pro\projetPerso\stockmania\src\main\java\fr\balen\paul\models\ItemStock.java
+F:\Pro\projetPerso\stockmania\src\main\java\fr\balen\paul\models\StatusDBModel.java
+F:\Pro\projetPerso\stockmania\src\main\java\fr\balen\paul\vues\IVue.java
+F:\Pro\projetPerso\stockmania\src\main\java\fr\balen\paul\vues\StatusDBVue.java
+F:\Pro\projetPerso\stockmania\src\main\java\fr\balen\paul\vues\StockFooter.java
+F:\Pro\projetPerso\stockmania\src\main\java\fr\balen\paul\vues\StockHeader.java
+F:\Pro\projetPerso\stockmania\src\main\java\fr\balen\paul\vues\StockTableView.java
+F:\Pro\projetPerso\stockmania\src\main\java\fr\balen\paul\vues\StockToolbar.java
+F:\Pro\projetPerso\stockmania\src\main\java\fr\balen\paul\vues\StockViewFX.java
